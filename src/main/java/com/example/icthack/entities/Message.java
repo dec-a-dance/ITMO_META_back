@@ -26,4 +26,7 @@ public class Message {
     @Nullable
     @Column(name = "image")
     String imageUrl;
+
+    @Column(name="chat_id")
+    long chatId;
 }

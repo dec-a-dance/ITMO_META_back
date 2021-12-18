@@ -6,19 +6,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_achieve')
+@Table(name = "itmo_meta_achieve")
 public class Achieve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name =  "id")
     long id;
 
-    @Column('title')
+    @Column(name =  "title")
     String title;
 
-    @Column('text')
+    @Column(name = "text")
     String text;
 
-    @Column('image')
+    @Column(name = "image")
     String imageUrl;
 }

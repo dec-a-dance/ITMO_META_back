@@ -5,16 +5,16 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_shop')
+@Table(name="itmo_meta_shop")
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name = "id")
     long id;
 
-    @Column('item_id')
+    @Column(name = "item_id")
     long itemId;
 
-    @Column('price')
+    @Column(name = "price")
     int price;
 }

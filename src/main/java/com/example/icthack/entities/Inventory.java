@@ -7,16 +7,16 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_inventory')
+@Table(name = "itmo_meta_inventory")
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name="id")
     long id;
 
-    @Column('item_id')
+    @Column(name="item_id")
     long itemId;
 
-    @Column('user_id')
+    @Column(name = "user_id")
     long userId;
 }

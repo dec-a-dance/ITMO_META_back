@@ -7,25 +7,25 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_post')
+@Table(name = "itmo_meta_post")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name = "id")
     long id;
 
-    @Column('author_id')
+    @Column(name = "author_id")
     long authorId;
 
-    @Column('date_time')
+    @Column(name = "date_time")
     String dateTime;
 
-    @Column('post_text')
+    @Column(name = "post_text")
     String postText;
 
-    @Column('image_url')
+    @Column(name = "image_url")
     String imageUrl;
 
-    @Column('how_many_comments')
+    @Column(name = "how_many_comments")
     int howManyComments;
 }

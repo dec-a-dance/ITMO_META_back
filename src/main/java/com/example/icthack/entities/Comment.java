@@ -6,20 +6,20 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_comment')
+@Table(name="itmo_meta_comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name = "id")
     long id;
 
-    @Column('author_id')
+    @Column(name = "author_id")
     long userId;
 
-    @Column('date_time')
+    @Column(name="date_time")
     String dateTime;
 
-    @Column('post_text')
+    @Column(name = "post_text")
     String postText;
 
 }

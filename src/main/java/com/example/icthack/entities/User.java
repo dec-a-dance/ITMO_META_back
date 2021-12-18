@@ -10,27 +10,28 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table('itmo_meta_user')
+@Table(name = "itmo_meta_user")
 public class User {
     @Id
-    @Column('isu_number')
+    @Column(name = "isu_number")
     long isu;
 
-    @Column('password')
+    @Column(name = "password")
     String password;
 
-    @Column('username')
+    @Column(name = "username")
     String username;
 
-    @Column('coins')
+    @Column(name = "coins")
     int coins;
 
-    @Column('diamonds')
+    @Column(name = "diamonds")
     int diamonds;
 
-    @Column('level_points')
+    @Column(name = "level_points")
     int levelPoints;
 
-    @Column('skin_color')
+    @Column(name = "skin_color")
+    int skinColor;
 
 }

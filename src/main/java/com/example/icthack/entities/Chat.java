@@ -5,13 +5,13 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_chat')
+@Table(name="itmo_meta_chat")
 public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name="id")
     long chatId;
 
-    @Column('name')
+    @Column(name="name")
     long name;
 }

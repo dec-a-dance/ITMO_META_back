@@ -6,24 +6,24 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table('itmo_meta_message')
+@Table(name = "itmo_meta_message")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column('id')
+    @Column(name = "id")
     long messageId;
 
     @Nullable
-    @Column('text')
+    @Column(name = "text")
     String text;
 
-    @Column('date_time')
+    @Column(name = "date_time")
     String dateTime;
 
-    @Column('sender')
+    @Column(name = "sender")
     long senderId;
 
     @Nullable
-    @Column('image')
+    @Column(name = "image")
     String imageUrl;
 }

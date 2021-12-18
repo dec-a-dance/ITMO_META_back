@@ -13,9 +13,6 @@ public class Market {
     @Column(name = "id")
     long id;
 
-    @Column(name = "item_id")
-    long itemId;
-
     @Column(name = "price")
     int price;
 

@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class Trade {
     long userId;
-    long itemId;
+    long lotId;
 }

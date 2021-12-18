@@ -30,10 +30,10 @@ public class ShopService {
         if (userRepository.findByIsu(trade.getUserId())==null) {
             return false;
         }
-        if (shopRepository.findById(trade.getItemId())==null){
+        if (shopRepository.findById(trade.getLotId())==null){
             return false;
         }
-        Shop shop = shopRepository.findById(trade.getItemId());
+        Shop shop = shopRepository.findById(trade.getLotId());
         int price = shop.getPrice();
         EnventoryItem item = new EnventoryItem();
         item.setTypeId(shop.getItemId());
@@ -57,6 +57,7 @@ public class ShopService {
             resp.setRarity(type.getRarity());
             resp.setImageUrl(type.getImageUrl());
             resp.setType(type.getType());
+            resp.setName(type.getName());
             responses.add(resp);
         }
         return responses;

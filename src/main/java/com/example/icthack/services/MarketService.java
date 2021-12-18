@@ -29,12 +29,19 @@ public class MarketService {
             return false;
         }
         Market market = marketRepository.getById(trade.getItemId());
-        long seller = market.getSellerId();
+        long sellerId = market.getSellerId();
         long item = market.getItemId();
+        int price = market.getPrice();
         inv.setUserId(trade.getUserId());
         inv.setItemId(trade.getItemId());
+        User seller = userRepository.findByIsu(sellerId);
+        User buyer = userRepository.findByIsu(trade.getUserId());
         inventoryRepository.save(inv);
-        inventoryRepository.deleteByItemIdAndUserId(item, seller);
+        inventoryRepository.deleteByItemIdAndUserId(item, sellerId);
+        seller.setCoins(seller.getCoins() + price);
+        buyer.setCoins(buyer.getCoins() - price);
+        userRepository.save(seller);
+        userRepository.save(buyer);
         return true;
     }
 }

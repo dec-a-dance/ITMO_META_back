@@ -1,6 +1,7 @@
 package com.example.icthack.services;
 
 import com.example.icthack.entities.Inventory;
+import com.example.icthack.entities.Shop;
 import com.example.icthack.entities.User;
 import com.example.icthack.repositories.EnventoryItemRepository;
 import com.example.icthack.repositories.InventoryRepository;
@@ -31,10 +32,13 @@ public class ShopService {
         if (shopRepository.findById(trade.getItemId())==null){
             return false;
         }
-
+        Shop shop = shopRepository.findById(trade.getItemId());
+        int price = shop.getPrice();
+        User buyer = userRepository.findByIsu(trade.getUserId());
         inv.setUserId(trade.getUserId());
-        inv.setItemId(shopRepository.findById(trade.getItemId()).getItemId());
+        inv.setItemId(shop.getItemId());
         inventoryRepository.save(inv);
+        buyer.setCoins(buyer.getCoins() - price);
         return true;
     }
 }

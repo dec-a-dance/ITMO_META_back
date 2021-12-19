@@ -31,7 +31,7 @@ public class MarketController {
  //       }
     }
 
-    @GetMapping("/getMarket")
+    @PostMapping("/getMarket")
     public ResponseEntity<List<MarketResponse>> getMarket() {
         return new ResponseEntity<>(marketService.getMarket(), HttpStatus.OK);
     }

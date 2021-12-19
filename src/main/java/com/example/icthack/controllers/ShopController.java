@@ -29,7 +29,7 @@ public class ShopController {
         }
     }
 
-    @GetMapping("/getShop")
+    @PostMapping("/getShop")
     public ResponseEntity<List<ShopResponse>> getShop() {
         return new ResponseEntity<>(shopService.getShop(), HttpStatus.OK);
     }

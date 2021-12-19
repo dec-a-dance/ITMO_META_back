@@ -33,7 +33,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/getFeed")
+    @PostMapping("/getFeed")
     public ResponseEntity<List<Post>> getFeed(@RequestBody User user) {
         try {
             var feed = postService.getUserFeed(user.getIsu());

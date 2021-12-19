@@ -20,7 +20,7 @@ public class InventoryController {
     public InventoryController(InventoryService inventoryService){
         this.inventoryService = inventoryService;
     }
-    @GetMapping("/getInventory")
+    @PostMapping("/getInventory")
     public ResponseEntity<List<ItemResponse>> getInventory(@RequestBody User user){
         return new ResponseEntity<>(inventoryService.getUserItems(user.getIsu()), HttpStatus.OK);
     }

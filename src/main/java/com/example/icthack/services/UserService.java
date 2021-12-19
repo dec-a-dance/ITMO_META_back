@@ -1,7 +1,11 @@
 package com.example.icthack.services;
 
 
+import com.example.icthack.entities.EnventoryItem;
+import com.example.icthack.entities.Inventory;
 import com.example.icthack.entities.User;
+import com.example.icthack.repositories.EnventoryItemRepository;
+import com.example.icthack.repositories.InventoryRepository;
 import com.example.icthack.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,8 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService{
     private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+    private final InventoryRepository inventoryRepository;
+    private final EnventoryItemRepository itemRep;
+    public UserService(UserRepository userRepository, InventoryRepository inventoryRepository, EnventoryItemRepository itemRep) {
         this.userRepository = userRepository;
+        this.inventoryRepository = inventoryRepository;
+        this.itemRep = itemRep;
     }
     /** Метод, использующийся для получения данных о пользователе из базы данных по его номеру телефона. */
     public User findUserByPhoneNumber(long isu) {
@@ -36,7 +44,28 @@ public class UserService{
             log.debug("User with phone number {} already exist", user.getIsu());
             return false;
         }
-        userRepository.save(user);
+        var createdUser = userRepository.save(user);
+        EnventoryItem item1 = new EnventoryItem();
+        EnventoryItem item2 = new EnventoryItem();
+        EnventoryItem item3 = new EnventoryItem();
+        item1.setTypeId(1);
+        item1 = itemRep.save(item1);
+        item2.setTypeId(7);
+        item2 = itemRep.save(item2);
+        item3.setTypeId(10);
+        item3 = itemRep.save(item3);
+        Inventory inv1 = new Inventory();
+        Inventory inv2 = new Inventory();
+        Inventory inv3 = new Inventory();
+        inv1.setUserId(createdUser.getIsu());
+        inv1.setItemId(item1.getUniqId());
+        inventoryRepository.save(inv1);
+        inv2.setUserId(createdUser.getIsu());
+        inv2.setItemId(item2.getUniqId());
+        inventoryRepository.save(inv2);
+        inv3.setUserId(createdUser.getIsu());
+        inv3.setItemId(item3.getUniqId());
+        inventoryRepository.save(inv3);
         return true;
     }
 

@@ -31,6 +31,6 @@ public class ShopController {
 
     @GetMapping("/getShop")
     public ResponseEntity<List<ShopResponse>> getShop() {
-        return new ResponseEntity<>(shopService.getShop(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(shopService.getShop(), HttpStatus.OK);
     }
 }

@@ -20,4 +20,13 @@ public class PostService {
     public List<Post> getUserFeed(long id){
         return postRepository.findAllByAuthorIdNot(id);
     }
+    public boolean post(Post post){
+        try {
+            postRepository.save(post);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+    }
 }

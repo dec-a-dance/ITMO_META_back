@@ -21,6 +21,7 @@ public class PostController {
     public PostController(PostService postService){
         this.postService = postService;
     }
+
     @PostMapping("/getProfile")
     public ResponseEntity<List<Post>> getProfile(@RequestBody User user) {
         try {
@@ -33,13 +34,23 @@ public class PostController {
     }
 
     @GetMapping("/getFeed")
-    public ResponseEntity<List<Post>> getShop(@RequestBody User user) {
+    public ResponseEntity<List<Post>> getFeed(@RequestBody User user) {
         try {
             var feed = postService.getUserFeed(user.getIsu());
             return new ResponseEntity<>(feed, HttpStatus.OK);
         }
         catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/post")
+    public ResponseEntity<String> post(@RequestBody Post post){
+        if(postService.post(post)){
+            return new ResponseEntity<>("Posted successfully.", HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Shit happened", HttpStatus.OK);
         }
     }
 }

@@ -34,4 +34,30 @@ public class User {
     @Column(name = "skin_color")
     int skinColor;
 
+    @Column(name="background")
+    int backgroundColorId;
+
+    @Column(name="brows")
+    int browsId;
+
+    @Column(name="eyes")
+    int eyesId;
+
+    @Column(name="hairstyle")
+    int hairstyleId;
+
+    @Column(name="mouth")
+    int mouthId;
+
+    @Column(name="pants")
+    int pantsId;
+
+    @Column(name="tshirt")
+    int tShirtId;
+
+    @Column(name="boots")
+    int bootsId;
+
+    @Column(name="glasses")
+    int glassesId;
 }

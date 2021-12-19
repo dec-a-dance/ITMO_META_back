@@ -22,13 +22,13 @@ public class MarketController {
     }
     @PostMapping("/buy")
     public ResponseEntity<String> buy(@RequestBody Trade trade) {
-        try {
+ //       try {
             marketService.buy(trade);
             return new ResponseEntity<>("Purchased successfully.", HttpStatus.OK);
-        }
-        catch(Exception e){
-            return new ResponseEntity<>("Something gone wrong.", HttpStatus.BAD_REQUEST);
-        }
+ //       }
+ //       catch(Exception e){
+ //           return new ResponseEntity<>("Something gone wrong.", HttpStatus.BAD_REQUEST);
+ //       }
     }
 
     @GetMapping("/getMarket")

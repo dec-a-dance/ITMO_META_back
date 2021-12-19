@@ -8,6 +8,7 @@ import com.example.icthack.responses.Trade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +27,13 @@ public class MarketService {
         this.enventoryItemRepository = enventoryItemRepository;
         this.itemTypeRepository = itemTypeRepository;
     }
-
+    @Transactional
     public boolean buy(Trade trade) {
         Inventory inv = new Inventory();
         if (userRepository.findByIsu(trade.getUserId()) == null) {
             return false;
         }
-        Market market = marketRepository.getById(trade.getLotId());
+        Market market = marketRepository.findByItemUniqId(trade.getLotId());
         long sellerId = market.getSellerId();
         long itemUniqId = market.getItemUniqId();
         int price = market.getPrice();
@@ -41,11 +42,12 @@ public class MarketService {
         User seller = userRepository.findByIsu(sellerId);
         User buyer = userRepository.findByIsu(trade.getUserId());
         inventoryRepository.save(inv);
-        inventoryRepository.deleteByItemIdAndUserId(itemUniqId, sellerId);
+        inventoryRepository.removeByItemIdAndUserId(itemUniqId, sellerId);
         seller.setCoins(seller.getCoins() + price);
         buyer.setCoins(buyer.getCoins() - price);
         userRepository.save(seller);
         userRepository.save(buyer);
+        marketRepository.removeByItemUniqId(trade.getLotId());
         return true;
     }
 

@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "itmo_meta_items")
 public class EnventoryItem {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "uniq_id")
     long uniqId;
 

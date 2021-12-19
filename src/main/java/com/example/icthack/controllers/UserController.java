@@ -52,4 +52,14 @@ public class UserController {
             return new ResponseEntity<>("Such user already exist.", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<String> update(@RequestBody User user){
+        if(userService.updateUser(user)){
+            return new ResponseEntity<>("Updated successfully.", HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Shit happened.", HttpStatus.BAD_REQUEST);
+        }
+    }
 }

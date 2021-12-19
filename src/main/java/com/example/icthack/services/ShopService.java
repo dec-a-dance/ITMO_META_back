@@ -49,10 +49,9 @@ public class ShopService {
         List<Shop> shops = shopRepository.findAll();
         List<ShopResponse> responses = new ArrayList<ShopResponse>();
         for (Shop s : shops){
-            EnventoryItem item = enventoryItemRepository.findById(s.getItemId());
-            ItemType type = itemTypeRepository.findById(item.getTypeId());
+            ItemType type = itemTypeRepository.findById(s.getItemId());
             ShopResponse resp = new ShopResponse();
-            resp.setTypeId(item.getTypeId());
+            resp.setTypeId(type.getId());
             resp.setPrice(s.getPrice());
             resp.setRarity(type.getRarity());
             resp.setImageUrl(type.getImageUrl());

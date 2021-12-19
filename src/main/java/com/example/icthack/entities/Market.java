@@ -8,17 +8,13 @@ import javax.persistence.*;
 @Entity
 @Table(name="itmo_meta_market")
 public class Market {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    long id;
-
     @Column(name = "price")
     int price;
 
     @Column(name = "seller_id")
     long sellerId;
 
+    @Id
     @Column(name = "item_unique_id")
     long itemUniqId;
 }

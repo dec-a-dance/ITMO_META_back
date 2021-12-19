@@ -4,5 +4,6 @@ import com.example.icthack.entities.Market;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MarketRepository extends JpaRepository<Market, Long> {
-    Market findById(long id);
+    Market findByItemUniqId(long id);
+    void removeByItemUniqId(long id);
 }

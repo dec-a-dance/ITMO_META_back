@@ -49,19 +49,21 @@ public class MarketService {
         return true;
     }
 
-    public List<MarketResponse> getShop(){
+    public List<MarketResponse> getMarket(){
         List<Market> shops = marketRepository.findAll();
         List<MarketResponse> responses = new ArrayList<MarketResponse>();
         for (Market m : shops){
             EnventoryItem item = enventoryItemRepository.findById(m.getItemUniqId());
             ItemType type = itemTypeRepository.findById(item.getTypeId());
             MarketResponse resp = new MarketResponse();
+            resp.setUniqId(m.getItemUniqId());
             resp.setTypeId(item.getTypeId());
             resp.setPrice(m.getPrice());
             resp.setRarity(type.getRarity());
             resp.setImageUrl(type.getImageUrl());
             resp.setType(type.getType());
             resp.setName(type.getName());
+            resp.setOwnerIsu(m.getSellerId());
             responses.add(resp);
         }
         return responses;
@@ -69,7 +71,9 @@ public class MarketService {
 
     public boolean sell(Sell sell){
         Market market = new Market();
+        System.out.println(sell.getItemUniqId());
         market.setItemUniqId(sell.getItemUniqId());
+        System.out.println(market.getItemUniqId());
         market.setSellerId(sell.getSellerId());
         market.setPrice(sell.getPrice());
         marketRepository.save(market);

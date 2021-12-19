@@ -11,4 +11,6 @@ public class MarketResponse {
     String type;
     String rarity;
     int price;
+    long ownerIsu;
+
 }

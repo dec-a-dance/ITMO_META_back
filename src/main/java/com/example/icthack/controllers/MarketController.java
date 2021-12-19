@@ -31,16 +31,16 @@ public class MarketController {
         }
     }
 
-    @GetMapping("/getShop")
-    public ResponseEntity<List<MarketResponse>> getShop() {
-        return new ResponseEntity<>(marketService.getShop(), HttpStatus.OK);
+    @GetMapping("/getMarket")
+    public ResponseEntity<List<MarketResponse>> getMarket() {
+        return new ResponseEntity<>(marketService.getMarket(), HttpStatus.OK);
     }
 
     @PostMapping("/sell")
     public ResponseEntity<String> sell(@RequestBody Sell sell) {
         try {
             marketService.sell(sell);
-            return new ResponseEntity<>("Purchased successfully.", HttpStatus.OK);
+            return new ResponseEntity<>("Selled successfully.", HttpStatus.OK);
         }
         catch(Exception e){
             return new ResponseEntity<>("Something gone wrong.", HttpStatus.BAD_REQUEST);
